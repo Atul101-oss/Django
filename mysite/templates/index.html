@@ -1,12 +1,33 @@
 <!-- templates/home/home_template.html -->
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="CSS/index.css"> {% endcomment %}
     <title>Home Page</title>
 </head>
+
+<style>
+    /* Styles for the card */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card h2 {
+        margin-top: 0;
+        align-text:center;
+    }
+    .card p {
+        margin-bottom: 0.5em;
+    }
+</style>
+
+
 <body>
     <header>
         <h1>Welcome to MySite</h1>
@@ -17,17 +38,18 @@
             <li><a href="/about">About</a></li>
         </ul>
     </nav>
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis ex vel justo finibus vehicula.</p>
-        </section>
-        <section>
-            <h2>Contact Us</h2>
-            <p>Email: contact@example.com</p>
-            <p>Phone: 123-456-7890</p>
-        </section>
-    </main>
+
+    {% for student in students %}
+    <div class="card">
+        <h2>{{student.Fname}} {{student.Lname}}</h2>
+        <p><strong>RollNo:</strong> {{ student.RollNo }}</p>
+        <p><strong>Course:</strong> {{ student.Course }}</p>
+        <p><strong>Semister:</strong> {{ student.Semister }}</p>
+    </div>
+    {% endfor %}
+
+
+
     <footer>
         <p>&copy; 2024 MySite. All rights reserved.</p>
     </footer>
