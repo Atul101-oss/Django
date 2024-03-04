@@ -10,6 +10,13 @@
 
 <style>
     /* Styles for the card */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: 20%; /* Adjust horizontal spacing */
+        margin: 20px; /* Negative margin to offset card padding */
+        }
+
     .card {
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -39,15 +46,16 @@
         </ul>
     </nav>
 
-    {% for student in students %}
-    <div class="card">
-        <h2>{{student.Fname}} {{student.Lname}}</h2>
-        <p><strong>RollNo:</strong> {{ student.RollNo }}</p>
-        <p><strong>Course:</strong> {{ student.Course }}</p>
-        <p><strong>Semister:</strong> {{ student.Semister }}</p>
+    <div class="card-container">
+        {% for student in students %}
+        <div class="card">
+            <h2>{{student.Fname}} {{student.Lname}}</h2>
+            <p><strong>RollNo:</strong> {{ student.RollNo }}</p>
+            <p><strong>Course:</strong> {{ student.Course }}</p>
+            <p><strong>Semister:</strong> {{ student.Semister }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-
 
 
     <footer>
