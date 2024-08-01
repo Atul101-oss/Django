@@ -1,0 +1,106 @@
+{% load static %}
+
+<nav class="navbar">
+    <div class="menu-icon">
+        <img src="{% static 'media/menu-alt-03-svgrepo-com.svg' %}" alt="Menu">
+    </div>
+    <a id="siteTitle" href="/" class="navbar-title-link">
+        <h1 class="navbar-title">AryaRoom</h1>
+    </a>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button type="submit">
+            <div class="search-icon">
+                <img src="{% static 'media/search-svgrepo-com.svg' %}" alt="search icon">
+            </div>
+        </button>
+    </div>
+    <div class="avatar">
+        <a href="{% url 'loginPage' %}">
+        <img src="{% static 'media/avatar-muslim-paranja-svgrepo-com.svg' %}" alt="Avatar">
+        </a>
+    </div>
+</nav>
+
+
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        height: 50px;
+        background: linear-gradient(135deg, #f0f3c5, #e0e083);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+    
+    .navbar-title-link {
+        position: absolute;
+        left: 45%;
+        transform: translateX(-50%);
+        text-decoration: none;
+        color: inherit;
+        z-index: 2; /* Ensure title is above other content */
+    }
+    
+    .navbar-title {
+        margin: 0;
+    }
+
+.menu-icon img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Aligns items to the right */
+    margin-right: 20px; /* Adds some space to the right */
+}
+
+.search-bar input {
+    width: calc(30% - 80px); /* Adjust width to accommodate button */
+    min-width: 100px;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 15px 0 0 15px; /* Rounded corners on the left */
+    outline: none;
+}
+
+.search-bar button {
+    width: 40px; /* Adjust width as needed */
+    padding: 8px;
+    border: none;
+    background-color: transparent; /* Transparent background */
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 20px; /* Adjust icon size as needed */
+    height: 20px;
+    cursor: pointer;
+}
+
+.avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navbar-title {
+    color:rgb(31, 30, 30);
+    text-align: center; /* Center align text */
+}
+</style>

@@ -1,0 +1,105 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'login-style.css' %}">
+
+<div class="login-container">
+    <div class="login-content">
+        <div class="login-image">
+            <img src={% static "Login/OIP.jpeg" %} alt="user Icon">
+        </div>
+        <div class="login-form">
+            <h2>Recovery</h2>
+            {% if error_message %}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{ error_message }}
+                    </div>
+                {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <label id="userName">e-Mail</label> <input type="email" name="email" id="">
+                <button type="submit">enter</button>
+            </form>
+            <a href={% url "loginPage" %} class="create-account"><bold>Login Here</bold></a>
+
+            <div class='records'>
+                <ul>
+                    {% for record in records %}
+                    <li>
+                        <p>
+                            <span>{{ record.userName }}</span>
+                            <span>{{ record.passwd }}</span>
+                        </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    
+    /* Container for the records */
+    .records {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Styling for the unordered list */
+    .records ul {
+        list-style-type: none;
+    }
+    
+    /* Styling for each list item */
+    .records li {
+        padding: 15px;
+        margin: 10px 0;
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    }
+    
+    /* Hover effect for list items */
+    .records li:hover {
+        background-color: #f1f1f1;
+    }
+    
+    /* Styling for the paragraph inside each list item */
+    .records li p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        color: #333333;
+        margin: 0;
+    }
+    
+    /* Styling for username and password spans */
+    .records li p span {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 3px;
+        background-color: #e0f7fa;
+        color: #00796b;
+        font-weight: bold;
+    }
+    
+    /* Styling for labels */
+    .records li p .label {
+        font-weight: normal;
+        color: #555;
+    }
+    
+</style>
