@@ -1,48 +1,38 @@
-{% extends "base.html" %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Example</title>
+</head>
+<body>
+    <h1>WebSocket Example</h1>
+    <div id="messages"></div>
+    <input id="messageInput" type="text" placeholder="Type a message">
+    <button id="sendButton">Send</button>
 
-{% block title %} <title>Chat App</title> {% endblock title %}
+    <script>
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/'
+        );
 
-{% block css %} <link rel="stylesheet" href="{% static 'chatRoom/chatroom.css' %}"> {% endblock css %}
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#messages').innerHTML += '<p>' + data.message + '</p>';
+        };
 
-{% block body %}
-    <div class="chat-container">
-        <div class="sidebar">
-            <div class="contact">
-                <img src="profile1.jpg" alt="Profile Picture">
-                <div class="contact-info">
-                    <h2>John Doe</h2>
-                    <p>Last message...</p>
-                </div>
-            </div>
-            <div class="contact">
-                <img src="profile2.jpg" alt="Profile Picture">
-                <div class="contact-info">
-                    <h2>Jane Smith</h2>
-                    <p>Last message...</p>
-                </div>
-            </div>
-            <!-- Add more contacts as needed -->
-        </div>
-        <div class="chat-area">
-            <div class="chat-header">
-                <h2>Chat with John Doe</h2>
-            </div>
-            <div class="chat-messages">
-                <div class="message sent">
-                    <p>Hello, John!</p>
-                    <span class="timestamp">10:00 AM</span>
-                </div>
-                <div class="message received">
-                    <p>Hi there!</p>
-                    <span class="timestamp">10:01 AM</span>
-                </div>
-                <!-- Add more messages as needed -->
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type a message...">
-                <button>Send</button>
-            </div>
-        </div>
-    </div>
-{% endblock body %}
+        chatSocket.onclose = function(e) {
+            console.error('WebSocket closed unexpectedly');
+        };
+
+        document.querySelector('#sendButton').onclick = function() {
+            const messageInput = document.querySelector('#messageInput');
+            const message = messageInput.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInput.value = '';  // Clear the input field
+        };
+    </script>
+</body>
+</html>
