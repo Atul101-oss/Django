@@ -1,0 +1,29 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'login-style.css' %}">
+
+<div class="login-container">
+    <div class="login-content">
+        <div class="login-image">
+            <img src={% static "media/OIP.jpeg" %} alt="user Icon">
+        </div>
+        <div class="login-form">
+            <h2>Member Login</h2>
+            {% if error_message %}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{ error_message }}
+                    </div>
+                {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <label id="userName">User</label>{{loginFields.userName}}
+                <label id="passwd">Password</label>{{loginFields.passwd}}
+                <button type="submit">LOGIN</button>
+            </form>
+            <a href={% url "passwdRecover" %} class="forgot">Forgot Username / Password?</a>
+            <a href={% url "newUser" %} class="create-account">Create your Account</a>
+        </div>
+    </div>
+</div>

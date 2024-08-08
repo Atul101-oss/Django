@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Sorting Algo's</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'Home/sort-style.css' %}">
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+    <h1>Sorting Visualization</h1>
+    <div class="input-container">
+        <input type="text" id="inputNumbers" placeholder="Enter length or numbers separated by space">
+        <button onclick="generateBars()">Generate Bars</button>
+    </div>
+    <div class="sorting-container">
+        <div id="bars" class="bars"></div>
+    </div>
+    <div class="controls">
+        <button onclick="sortBars('merge')">Merge Sort</button>
+        <button onclick="sortBars('quick')">Quick Sort</button>
+        <button onclick="sortBars('bubble')">Bubble Sort</button>
+        <button onclick="sortBars('selection')">Selection Sort</button>
+    </div>
+</div>
+<script src="{% static 'Home/sort-script.js' %}"></script>
+{% endblock body %}

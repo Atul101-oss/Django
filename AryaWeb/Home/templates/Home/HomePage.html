@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    <title>HomePage</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'card-style.css' %}">
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="card-container">
+        {% for game in games %}
+
+        <div class="card">
+                <img src="{% static 'media/40_22.jpg' %}" alt="Cover image">
+                <h1>{{ game.gName }}</h1>
+                <h2>{{ game.gID }}</h2>
+                <span>{{ game.gTag }}</span>
+                <p>{{ game.gDesc|truncatechars:50}}</p>
+                <a href="{% url 'home:'|add:game.gID %}"><button>Enter</button></a>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock%}

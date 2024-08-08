@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    <title>HomePage</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'card-style.css' %}">
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="card-container">
+    {% for book in books %}
+        <div class="card">
+            <a style="text-decoration:none; color:inherit;" href="{% url 'books:book_description' book.title %}">
+                <img src="{{ book.thumbnail }}" alt="Cover image">
+                <h1>{{ book.title }}</h1>
+                <h2>{{ book.author }}</h2>
+                <span>{{ book.average_rating }}</span>
+                <p>{{ book.description|truncatechars:50 }}</p>
+            </a>
+        </div>
+    {% endfor %}
+
+    </div>
+
+{% endblock%}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %} <link rel="stylesheet" href="{% static 'Home/gart.css' %}"> {% endblock css %}
+
+{% block body %}
+<hr>
+    <div class="input-container">
+        <input type="text" id="inputNodes" placeholder="Enter density count">
+        <button onclick="generateDots()">Generate Dots</button>
+    </div>
+
+    <div class="Node-container"></div>
+
+    <div class="controls">
+        <input type="text" id="inputdist" placeholder="enter minimum distance bitween nodes">
+        <button onclick="connectDotsBFS('inputdist')"> BFS </button>
+        <button onclick="connectDotsDFS('inputdist')"> DFS </button>
+
+    </div>
+
+    <script src="{% static 'Home/gart.js' %}"></script>
+{% endblock body %}
